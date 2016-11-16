@@ -1,0 +1,22 @@
+extends ../app.pug
+
+block content
+  .container
+    h1 Edit Form
+    hr
+    form(action="/posts/" + blog.id method="POST")
+      input(type="hidden" name="_method" value="PUT")
+      div(class="form-group")
+        label(for="blog-title") Title
+        input(name="title" type="text" class="form-control" id="post-title" value=post.title)
+      div(class="form-group")
+        label(for="post-cover-image")  Image
+        input(name="imageURL" type="text" class="form-control" id="post-image" value=post.imageURL)
+      div(class="form-group")
+        label(for="post-author") Author
+        input(name="author" type="text" class="form-control" id="post-author" value=post.author)
+      div(class="form-group")
+        label(for="post-description") Description
+        textarea(name="description" class="form-control" rows=5 id="book-description")= post.description
+      div(class="form-group text-xs-right")
+        button(type="submit" class="btn btn-lg btn-success") Submit

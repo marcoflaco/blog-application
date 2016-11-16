@@ -1,0 +1,23 @@
+extends ../appl.pug
+
+block content
+  .container
+    h1 Listing posts
+    hr
+    each post in posts
+      .card.card-block
+        .row
+          .col-md-4.hidden-md-down
+            img(src=post.imageURL alt=post.title + " Blog Image" class="img-fluid")
+          .col-xs-12.col-md-8
+            a(href="/posts/" + post.id)
+              h2= post.title
+            h5= post.author
+            p= post.description
+            .row
+              .col-xs-3.offset-xs-6
+                a(href="/posts/" + post.id + "/edit" class="btn btn-warning btn-block") EDIT Post
+              .col-xs-3
+                form(action="/posts/" + post.id method="POST")
+                  input(type="hidden" name="_method" value="DELETE")
+                  button(type="submit" class="btn btn-danger btn-block" data-post=post.id) DELETE

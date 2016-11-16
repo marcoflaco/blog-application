@@ -1,21 +1,18 @@
 const express = require('express'),
       Sequelize = require('sequelize'),
+      db = require ('../models'),
       router = express.Router();
 
-const sequelize = new Sequelize('marcocampos', 'marcocampos', '', { dialect: 'postgres' });
+//we require the modules
 
-// Our model definition:
-var Blog = sequelize.define('book', {
-  title: Sequelize.STRING,
-  imageURL: Sequelize.STRING,
-  author: Sequelize.STRING,
-  description: Sequelize.TEXT
-});
+
 // ======================
 
-router.get('/', (request, response) => {
-  Blog.findAll({ order: 'id ASC' }).then((blogs) => {
-    response.render('blogs/index', { blogs: blogs });
+//aanvraag
+router.get('/', function (request, response) {
+  //router database rquest
+  db.Post.findAll({ order: 'id ASC' }).then((post) => {
+    response.render('blogs/index', { posts: post});
   });
 });
 
